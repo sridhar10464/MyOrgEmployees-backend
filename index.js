@@ -1,12 +1,13 @@
 require("dotenv").config();
 const express = require( "express" );
 const db = require("./db/connect");
+const cors = require ("cors");
 const employeeRoutes = require("./routes/employees.routes") //import routes
 
 const app = express();
 
 // conecting DB
-db()
+db();
 
 app.get("/", (request, response) => {
     response.send("Welcome to My Orginization🌎🌎🌎");
@@ -14,6 +15,8 @@ app.get("/", (request, response) => {
 
 // middlewares
 app.use(express.json());
+app.use(cors());
+
 
 app.use("/api",employeeRoutes);
 
